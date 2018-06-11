@@ -1,0 +1,67 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<dom-module id="murder-mystery-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+    <paper-button on-tap="_init">INIT</paper-button>
+    <paper-button on-tap="_yearCycle">YEAR CYCLE</paper-button>
+    <h2>YEAR [[year]]</h2>
+  </template>
+  <script src="../../js/Person.js"></script>
+  <script src="../../js/PersonUtils.js"></script>
+  <script src="../../js/GenerationUtils.js"></script>
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MurderMysteryApp extends Polymer.Element {
+      static get is() { return 'murder-mystery-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'murder-mystery-app'
+          },
+
+          year: {
+            type: Number,
+            value: 0
+          }
+
+
+        };
+      }
+
+      _init() {
+        for (var i = 0; i < 5; i++) {
+          generateCouple();
+        }
+
+        console.info(community);
+      }
+
+      _yearCycle() {
+
+        this.year++;
+
+        for (var i = community.length - 1; i >= 0; i--) {
+          community[i].tryBaby(community[i].partner);
+          community[i].age++;
+        }
+
+        console.info(community);
+
+      }
+
+    }
+
+    window.customElements.define(MurderMysteryApp.is, MurderMysteryApp);
+  </script>
+</dom-module>

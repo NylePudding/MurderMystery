@@ -1,0 +1,7 @@
+{
+  "name": "murder-mystery",
+  "short_name": "murder-mystery",
+  "description": "Murder Mystery game",
+  "start_url": "/",
+  "display": "standalone"
+}
